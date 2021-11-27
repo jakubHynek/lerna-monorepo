@@ -1,0 +1,14 @@
+{
+  "name": "child",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "John Doe",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}
