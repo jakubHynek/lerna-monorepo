@@ -1,4 +1,4 @@
-name: 🌆 🛠️ Deploy dev
+name: 🌆 🌠 Deploy production
 on:
   push:
     branches: [main]
