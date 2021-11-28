@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          {greet(1, 'Doe')}
+          {greet('John', 'Doe')}
         </h1>
 
         <p className={styles.description}>

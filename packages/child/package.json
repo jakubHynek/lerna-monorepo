@@ -1,7 +1,7 @@
 {
   "name": "child",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "author": "John Doe",
   "license": "MIT",
   "private": true,
