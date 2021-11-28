@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "index.jsx": {
+        "includeFiles": "public/locales/**"
+      }
+    }
+  }
+  
