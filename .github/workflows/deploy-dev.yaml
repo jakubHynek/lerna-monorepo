@@ -1,9 +1,7 @@
 name: 🎪 🟠 Deploy dev
 on:
   push:
-  branches: [master]
-  # pull_request:
-  # types: [opened, synchronize, reopened]
+    branches: [master]
 jobs:
   deploy:
     runs-on: ubuntu-latest
