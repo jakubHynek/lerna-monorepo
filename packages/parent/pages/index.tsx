@@ -6,6 +6,7 @@ import { greet } from "child";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import i18nConfig from '../next-i18next.config'
 
 const Home: NextPage = () => {
   const { t } = useTranslation("common");
@@ -82,7 +83,7 @@ const Home: NextPage = () => {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? "cs", ["common"])),
+      ...(await serverSideTranslations(locale ?? "cs", ["common"], i18nConfig)),
       // Will be passed to the page component as props
     },
   };
