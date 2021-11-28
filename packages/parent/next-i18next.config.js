@@ -5,5 +5,5 @@ module.exports = {
       defaultLocale: 'cs',
       locales: ['en', 'cs'],
     },
-    localePath: path.resolve('./public/locales'),
+    localePath: Boolean(process.env.VERCEL) ? '/locales' : path.resolve('./public/locales'),
   };
