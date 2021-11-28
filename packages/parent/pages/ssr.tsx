@@ -1,4 +1,4 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -19,8 +19,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Link href="/ssr" locale="cs">
-          <a style={{background: 'pink', padding: '16px', borderRadius: '4px'}}>GO TO SERVER SIDE RENDERED TRANSLATIONS</a>
+      <Link href="/" locale="en">
+          <a style={{background: 'pink', padding: '16px', borderRadius: '4px'}}>GO TO STATIC RENDERED TRANSLATIONS</a>
         </Link>
         <h1 style={{ color: "pink" }}>{t("greet")}</h1>
         <h1 className={styles.title}>{greet("John", "Doe")}</h1>
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? "cs", ["common"], i18nConfig)),
