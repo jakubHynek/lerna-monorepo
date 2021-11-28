@@ -1,10 +1,14 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {greet} from 'child'
+import type { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { greet } from "child";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 const Home: NextPage = () => {
+  const { t } = useTranslation("common");
   return (
     <div className={styles.container}>
       <Head>
@@ -14,12 +18,17 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          {greet('John', 'Doe')}
-        </h1>
+        <Link href="#" locale="fr">
+          <a>Change to CS</a>
+        </Link>
+        <Link href="#" locale="fr">
+          <a>Change to EN</a>
+        </Link>
+        <h1 style={{ color: "pink" }}>{t("greet")}</h1>
+        <h1 className={styles.title}>{greet("John", "Doe")}</h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
@@ -60,14 +69,23 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "cs", ["common"])),
+      // Will be passed to the page component as props
+    },
+  };
+};
+
+export default Home;
