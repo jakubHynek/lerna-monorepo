@@ -1,9 +1,9 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { greet } from "child";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import i18nConfig from "../next-i18next.config";
 
@@ -18,22 +18,22 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Link href="/static" locale="cs">
+        <Link href="/" locale="en">
           <a
             style={{ background: "pink", padding: "16px", borderRadius: "4px" }}
           >
-            GO TO STATIC RENDERED PAGE
+            GO TO SERVER SIDE RENDERED PAGE
           </a>
         </Link>
         <h1 style={{ color: "pink" }}>{t("greet")}</h1>
-        <p>This page is rendered server side.</p>
+        <p>This page is statically rendered.</p>
         <h3 className={styles.title}>{greet("John", "Doe")}</h3>
       </main>
     </div>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? "cs", ["common"], i18nConfig)),
